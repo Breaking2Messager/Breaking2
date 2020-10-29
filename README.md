@@ -45,6 +45,7 @@ python3 Breaking2Messager.py
 Breaking 2 messager need two environment variable: env_device.py and env_user_credentials.py
 
 content for env_device.py
+```python
 vManager_HOST = "sandboxsdwan.cisco.com"
 DNAC_HOST = "sandboxdnac.cisco.com"
 MERAKI_URL = "https://api.meraki.com/api/v0/"
@@ -53,8 +54,10 @@ WEBEX_TEAMS_URL = "https://api.ciscospark.com/v1/messages"
 EMAIL_HOST = "smtp.163.com"
 EMAIL_SEND_MAILBOX = "your_email@163.com"
 EMAIL_RECV_MAILBOX = ["notify_recv_1@cisco.com", "notify_recv_2@cisco.com"]
+```
 
 Content for env_user_credentials.py
+```python
 vManager_USERNAME = "vmanager_username"
 vManager_PASSWORD = "vmanager_password"
 DNAC_USER = "dnac_username"
@@ -64,3 +67,4 @@ EMAIL_USERNAME = "email_username"
 EMAIL_PASSWORD = "email_password"
 WEBEX_TEAMS_SPACE = "webex_team_space_more_than_70_characters"
 WEBEX_TEAMS_TOKEN = "webex_teams_token_more_than_100_characters"
+```
