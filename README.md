@@ -33,6 +33,8 @@ Breaking 2 messager is a common notification system, not only for DNA, SD-WAN, M
 
 Note that breaking 2 messager support multiple solutions in this design, so IT can be notified when any solution has problems, and it is easy to add more functons to check other status.
 
+![image](./topo.png)
+
 ## Install
 
 Install Python Backend:
