@@ -9,10 +9,28 @@ class NotifyManager:
     def __init__(self):
         self.__webex_flag__ = 0
         self.__email_flag__ = 0
-        pass
+
+        # webex teams parameters
+        self.__webex_url__ = ""
+        self.__webex_space__ = ""
+        self.__webex_token__ = ""
+
+        # email parameters
+        self.__email_host__ = ""
+        self.__email_receiver_list__ = []
+        self.__email_sender__ = ""
+        self.__email_user__ = ""
+        self.__email_passwd__ = ""
 
     def set_webex_para(self,
-                       webex_dict={}):
+                       webex_dict):
+
+        """
+        initilize webex teams notification parameter
+
+        Keyword arguments:
+        webex_dict: webex teams parameter
+        """
 
         self.__webex_flag__ = 1
 
@@ -25,11 +43,18 @@ class NotifyManager:
               % self.__webex_space__)
         print("NotifyManager Webex Teams URL=%s"
               % self.__webex_url__)
-
+        return
 
     def set_email_para(self,
-                       email_dict={}):
-        
+                       email_dict):
+
+        """
+        initilize email notification parameter
+
+        Keyword arguments:
+        email_dict: email parameter
+        """
+
         self.__email_flag__ = 1
 
         # email
@@ -46,10 +71,8 @@ class NotifyManager:
         print("NotifyManager email receiver mailbox=%s"
               % self.__email_receiver_list__)
 
-    # deconstructor
-    def __del__(self):
-        pass
-     
+        return
+
     def send_msg(self, text):
 
         """
@@ -58,29 +81,14 @@ class NotifyManager:
         Keyword arguments:
         text: message content
         """
-        self.__send_msg_by_webex__(text)
-        self.__send_msg_by_mail__(text)
-        self.__send_msg_by_sms__(text)
-        self.__send_msg_by_wechat__(text)
 
-    def __send_msg_by_wechat__(self, text):
-        """
-        send message to SMS
+        if self.__webex_flag__ == 1:
+            self.__send_msg_by_webex__(text)
 
-        Keyword arguments:
-        text: message content
-        """
-        pass
+        if self.__webex_flag__ == 1:
+            self.__send_msg_by_mail__(text)
 
-    def __send_msg_by_sms__(self, text):
-
-        """
-        send message to SMS
-
-        Keyword arguments:
-        text: message content
-        """
-        pass
+        return
 
     def __send_msg_by_mail__(self, text):
 
@@ -94,10 +102,15 @@ class NotifyManager:
         print("NotifyManager __send_msg_by_mail__ enters")
         print("message=%s" % text)
 
-        message = MIMEText(text, 'plain', 'utf-8')
-        message['Subject'] = 'Error alert from Hunter Project'
-        message['From'] = self.__email_sender__
-        message['To'] = ','.join(self.__email_receiver_list__)
+        subject = "One ERROR message From Kipchoge with Breaking 2 pace!"
+        content1 = "Hi, \n\n"
+        content2 = "    One ERROR message is recived. Detail content is :\n\n"
+        content = content1 + content2 + text
+        
+        message = MIMEText(content, "plain", "utf-8")
+        message["Subject"] = subject
+        message["From"] = self.__email_sender__
+        message["To"] = ",".join(self.__email_receiver_list__)
 
         try:
             smtp_obj = smtplib.SMTP()
@@ -111,9 +124,9 @@ class NotifyManager:
                 message.as_string())
             smtp_obj.quit()
         except smtplib.SMTPException as e:
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            print('Error! Exception is found to post message by email')
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("Error! Exception is found to post message by email")
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             print(e)
 
         return
@@ -144,22 +157,22 @@ class NotifyManager:
                 headers=http_header)
             print(response.status_code)
         except Exception as e:
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            print('Error! Exception is found to post message over webex teams')
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("Error! Exception is found to post message over webex teams")
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             print(e)
             return
 
         if response.status_code == 200:
             pass
         elif response.status_code == 401:
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            print('Webex Team Token Expired')
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("Webex Team Token Expired")
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         else:
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            print('Fail to send message=%s' % text)
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("Fail to send message=%s" % text)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             print(response.status_code)
             print(response.text)
 
