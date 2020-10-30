@@ -72,3 +72,11 @@ EMAIL_PASSWORD = "email_password"
 WEBEX_TEAMS_SPACE = "webex_team_space_more_than_70_characters"
 WEBEX_TEAMS_TOKEN = "webex_teams_token_more_than_100_characters"
 ```
+
+Notes:
+1） If you do not know how to get the Meraki API key, please view following instructions:
+https://developer.cisco.com/meraki/api/#!authorization/obtaining-your-meraki-api-key
+2)  If you do not know how to create a Webex Teams bot, please view following instructions:
+https://developer.webex.com/my-apps/new/bot
+3） This script supports DevNet Sandbox. So, it's suggested to find sandbox information from following pages:
+https://devnetsandbox.cisco.com/
