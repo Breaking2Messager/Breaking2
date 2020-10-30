@@ -1,6 +1,7 @@
 # Breaking2 Messager
 
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/Breaking2Messager/Breaking2)
+
 Breaking 2 Messager Solution:
 
 Cisco DNA(switch, AP, router, DNA Center) + Cisco Meraki(AP) + Cisco SDWAN(vBond, vSmart, vManager and edges) = Breaking 2 Messager solution
