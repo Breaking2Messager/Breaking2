@@ -39,6 +39,8 @@ Note that breaking 2 messager support multiple solutions in this design, so IT c
 
 Install Python Backend:
 ```bash
+git clone https://github.com/Breaking2Messager/Breaking2.git
+cd Breaking2
 pip install -r requirements.txt
 python3 Breaking2Messager.py
 ```
